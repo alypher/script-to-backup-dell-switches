@@ -31,13 +31,11 @@ def do_backup_to_tftp(host, user, passwd):
     sleep(2)
     remote_conn.send(passwd+'\n')
     sleep(2)
-    # remove this line below on production:
-    remote_conn.send(("show startup-config"+"\n"))
     
     # use this commands below to copy backup to a TFTP server
-    # remote_conn.send("copy running-config tftp://"+tftp_server+"/switches-backup/"+host+"-"+st+"\n")
-    # sleep(2)
-    # remote_conn.send(("y"+"\n"))
+    remote_conn.send("copy running-config tftp://"+tftp_server+"/"+host+"-"+st+".txt\n")
+    sleep(2)
+    remote_conn.send(("y"+"\n"))
     sleep(2)
 
     # Print output
